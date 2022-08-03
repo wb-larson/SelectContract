@@ -5,6 +5,8 @@
 package selectcontract2;
 
 import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -108,7 +110,7 @@ public class ContractView extends javax.swing.JFrame {
         jLabel6.setText("Filter by Origin:");
         jLabel6.setOpaque(true);
 
-        jComboOriginCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboOriginCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Item 2", "Item 3", "Item 4" }));
         jComboOriginCity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboOriginCityActionPerformed(evt);
@@ -241,6 +243,10 @@ public class ContractView extends javax.swing.JFrame {
         jBidButton.addActionListener(listenForBidButton);
     }
     
+    void addcomboBoxListener(ItemListener listenForComboBox) {
+        jComboOriginCity.addItemListener(listenForComboBox);
+    }
+    
     void displayErrorMessage(String errorMessage) {
         JOptionPane.showMessageDialog(this, errorMessage);
     }
@@ -279,8 +285,11 @@ public class ContractView extends javax.swing.JFrame {
         }
     }
     
-  //FIXME: updating view?  
-    
+    void setOriginCityList(String[] cityList) {
+        final DefaultComboBoxModel model = new DefaultComboBoxModel(cityList);
+        
+        this.jComboOriginCity.setModel(model);
+    }
     
     private void jPrevButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPrevButtonActionPerformed
         //TODO: code?

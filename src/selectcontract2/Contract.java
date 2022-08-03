@@ -50,5 +50,9 @@ public class Contract {
     public String getOrderItem() {
         return orderItem;
     }
-    
+
+    boolean contains(String city) {
+        return (city.equals(originCity)); // returns true if city == originCity, false if not
+    }
 }
+

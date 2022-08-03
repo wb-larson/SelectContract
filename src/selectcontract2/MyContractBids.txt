@@ -1,0 +1,5 @@
+
+Name: MeAgain, ContractID: 4RDW, Bid Amount: $100.00, Date: July 29 2022 15:46 PDT
+Name: Wynn, ContractID: 4RDW, Bid Amount: $750.00, Date: July 29 2022 15:49 PDT
+Testing,4RDW,$400.00,July 29 2022 15:51 PDT
+Me,4RDW,$150.00,July 29 2022 15:51 PDT

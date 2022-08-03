@@ -6,6 +6,13 @@ package selectcontract2;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,12 +28,13 @@ class ContractController {
         this.theModel = theModel;
         
         this.theView.addPrevListener(new PrevButtonListener());
-        this.theView.addBidListener(new BidButtonListener());
         this.theView.addNextListener(new NextButtonListener());
+        this.theView.addBidListener(new BidButtonListener());
+        this.theView.addcomboBoxListener(new ComboListener());
+                
         this.setUpDisplay();
-
+        this.theView.setOriginCityList(this.theModel.getOriginCityList());
     }
-    
     
 
     public void setUpDisplay() {
@@ -104,22 +112,37 @@ class ContractController {
         
         @Override
         public void actionPerformed(ActionEvent e) {
-//            if (theModel.getCurrentContractNum() == 0) {
-//                return;
-//            }
-//            
-//            try {
-// //               theModel.bidContract();
-//            
-//            } catch (Exception ex) {
-//                System.out.println(ex);
-//                theView.displayErrorMessage("ERROR: There is a problem setting a bid.\n");
-//                        
-//            }
-//            
-//            setUpDisplay();
+            
+            try {
+                ConfirmBid cb;
+                cb = new ConfirmBid(theView, true, theModel.getTheContract());
+                cb.setLocationRelativeTo(null);
+                cb.setVisible(true);
+                
+                     
+            } catch (Exception ex) {
+                System.out.println(ex);
+                theView.displayErrorMessage("Error: The numbers entered must be integers.");
+            }
         }
     }
+
+        
     
-}
+    
+    class ComboListener implements ItemListener {
+        
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            System.out.println(e.getItem().toString());
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                String selectedCity = e.getItem().toString();
+                System.out.println(selectedCity);
+                theModel.updateContractList(selectedCity);
+                setUpDisplay();
+            } // end of if
+        } // end of itemStateChanged
+    } // end of ComboListener
+    
+} // end of ContractController
 

@@ -20,9 +20,6 @@ public class SelectContract2 {
         ContractModel theModel = new ContractModel();
         ContractController theController;
         theController = new ContractController(theView, theModel);
-        theView.setVisible(true);
-        
-        
+        theView.setVisible(true);        
     }
-    
 }
